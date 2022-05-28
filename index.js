@@ -1,17 +1,18 @@
 const express = require('express');
 const cors = require('cors');
+const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const userRoutes = require('./routes/userRoutes.js');
 
+dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
 ///////////////////////////////////////////////////////////
 // connect to MongoDB
-const dbURI =
-    'mongodb+srv://lvlad:pgNG0t5Cs7OLXBjJ@cluster0.ehdzu.mongodb.net/?retryWrites=true&w=majority';
+const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.ehdzu.mongodb.net/?retryWrites=true&w=majority`;
 mongoose
     .connect(dbURI)
     .then(() =>

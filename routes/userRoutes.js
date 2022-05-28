@@ -53,7 +53,6 @@ router.patch('/:id', async (req, res) => {
     let user;
     try {
         user !== null ? (user = await User.findById(req.params.id)) : res.json('User not found!');
-        console.log('user', user);
     } catch (error) {
         console.error(error);
     }
@@ -89,24 +88,24 @@ router.patch('/:id', async (req, res) => {
 });
 
 // Delete user
-router.delete('/:id', async (req, res) => {
-    let user;
-    console.log('user', user);
-    try {
-        user !== null ? (user = await User.findById(req.params.id)) : res.json('User not found!');
-        console.log('user', user);
-    } catch (error) {
-        console.error(error);
-    }
-    res.user = user;
-    console.log('user', user);
+// router.delete('/:id', async (req, res) => {
+//     let user;
+//     console.log('user', user);
+//     try {
+//         user !== null ? (user = await User.findById(req.params.id)) : res.json('User not found!');
+//         console.log('user', user);
+//     } catch (error) {
+//         console.error(error);
+//     }
+//     res.user = user;
+//     console.log('user', user);
 
-    try {
-        await res.user.remove();
-    } catch (error) {
-        console.error(error);
-    }
-});
+//     try {
+//         await res.user.remove();
+//     } catch (error) {
+//         console.error(error);
+//     }
+// });
 
 ///////////////////////////////////////////////////////////
 // image Upload Multer
