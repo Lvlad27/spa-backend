@@ -1,17 +1,15 @@
 const express = require('express');
+const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
+dotenv.config();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const multer = require('multer');
-const userRoutes = require('./routes/userRoutes.js');
+const UserRouter = require('./routes/UserRouter.js');
 
-dotenv.config();
-const app = express();
 const port = process.env.PORT || 3000;
 
-///////////////////////////////////////////////////////////
-// connect to MongoDB
+// connect to DB
 const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.ehdzu.mongodb.net/?retryWrites=true&w=majority`;
 mongoose
     .connect(dbURI)
@@ -22,8 +20,9 @@ mongoose
     )
     .catch((error) => console.log(error));
 
-///////////////////////////////////////////////////////////
-// use
+// Middleware
 app.use(cors('http://127.0.0.1:8080'));
 app.use(bodyParser.json());
-app.use('/dataService', userRoutes);
+
+// Routes
+app.use('/dataService', UserRouter);
