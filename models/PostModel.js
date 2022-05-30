@@ -9,9 +9,8 @@ const PostSchema = new mongoose.Schema({
         type: String,
         lowercase: true,
     },
-    postDate: {
-        type: Date,
-        default: Date.now(),
+    createdAt: {
+        timestamps: true,
     },
 });
 
