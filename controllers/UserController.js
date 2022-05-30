@@ -3,17 +3,7 @@ const User = require('../models/UserModel.js');
 let controls = {
     create: async (req, res) => {
         try {
-            let newUser = new User({
-                email: req.body.email,
-                password: req.body.password,
-                firstName: req.body.firstName,
-                surname: req.body.surname,
-                country: req.body.country,
-                birthday: req.body.birthday,
-                gender: req.body.gender,
-                hobbies: req.body.hobbies,
-                profileImgName: req.body.profileImgName,
-            });
+            let newUser = new User(req.body);
             let savedUser = await newUser.save();
             res.json(savedUser);
         } catch (err) {
@@ -38,7 +28,6 @@ let controls = {
     },
     update: async (req, res) => {
         try {
-            let filter = { id: req.body.id };
             let update = {
                 firstName: req.body.updateFirstName,
                 surname: req.body.updateSurname,
@@ -48,9 +37,16 @@ let controls = {
                 hobbies: req.body.selectedHobbies,
                 profileImgName: req.body.imgName,
             };
-
-            let foundUser = await User.findOneAndUpdate(filter, update);
+            options = {};
+            let foundUser = await User.findByIdAndUpdate(req.body.id, update);
             res.json(foundUser);
+        } catch (err) {
+            res.json({ errors: err });
+        }
+    },
+    uploadImg: async (req, res) => {
+        try {
+            res.send(req.file);
         } catch (err) {
             res.json({ errors: err });
         }
@@ -62,6 +58,10 @@ let controls = {
         } catch (err) {
             res.json({ errors: err });
         }
+    },
+    readAllPosts: async (req, res) => {
+        let foundUser = await User.findById(req.params.id).populate('posts');
+        res.json(foundUser);
     },
 };
 

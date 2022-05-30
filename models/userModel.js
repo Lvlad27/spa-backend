@@ -18,15 +18,14 @@ const UserSchema = new mongoose.Schema({
     gender: Array,
     hobbies: Array,
     profileImgName: String,
+    posts: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'PostModel',
+        },
+    ],
 });
 
 const model = mongoose.model('UserModel', UserSchema);
 
 module.exports = model;
-
-/*
-function test() {
-    console.log('hello');
-    setTimeout(console.log('hello'), 0;)
-}
-*/

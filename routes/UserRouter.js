@@ -4,16 +4,10 @@ const router = express.Router();
 const multer = require('multer');
 
 let UsersController = require('../controllers/UserController.js');
+let PostsController = require('../controllers/PostController.js');
 
 router.use(express.static('uploads'));
 
-router.post('/create', UsersController.create);
-router.get('/', UsersController.readAll);
-router.get('/:id', UsersController.readById);
-router.patch('/update', UsersController.update);
-router.delete('/delete', UsersController.delete);
-
-///////////////////////////////////////////////////////////
 // image Upload Multer
 const imageStorage = multer.diskStorage({
     destination: 'uploads', // Destination to store image
@@ -22,7 +16,6 @@ const imageStorage = multer.diskStorage({
         // file.profileImg is name of the field (image), path.extname get the uploaded file extension
     },
 });
-
 const imageUpload = multer({
     storage: imageStorage,
     limits: {
@@ -37,16 +30,17 @@ const imageUpload = multer({
     },
 });
 
-// Image upload
-router.post(
-    '/uploadProfileImg',
-    imageUpload.single('profileImg'),
-    (req, res) => {
-        res.send(req.file);
-    },
-    (error, req, res, next) => {
-        res.status(400).send({ error: error.message });
-    }
-);
+router.get('/', UsersController.readAll);
+router.get('/:id', UsersController.readById);
+router.get('/:id/posts', UsersController.readAllPosts);
+router.post('/create', UsersController.create);
+router.post('/uploadProfileImg', imageUpload.single('profileImg'), UsersController.uploadImg);
+router.patch('/update', UsersController.update);
+router.delete('/delete', UsersController.delete);
+
+router.get('/posts', PostsController.readAll);
+router.post('/posts/:id/create', PostsController.create);
+router.post('/posts/upload', imageUpload.single(''), PostsController.upload);
+///////////////////////////////////////////////////////////
 
 module.exports = router;
