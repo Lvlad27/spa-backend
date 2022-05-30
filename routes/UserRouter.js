@@ -4,7 +4,6 @@ const router = express.Router();
 const multer = require('multer');
 
 let UsersController = require('../controllers/UserController.js');
-let PostsController = require('../controllers/PostController.js');
 
 router.use(express.static('uploads'));
 
@@ -38,9 +37,6 @@ router.post('/uploadProfileImg', imageUpload.single('profileImg'), UsersControll
 router.patch('/update', UsersController.update);
 router.delete('/delete', UsersController.delete);
 
-router.get('/posts', PostsController.readAll);
-router.post('/posts/:id/create', PostsController.create);
-router.post('/posts/upload', imageUpload.single(''), PostsController.upload);
 ///////////////////////////////////////////////////////////
 
 module.exports = router;
