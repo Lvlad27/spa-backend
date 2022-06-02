@@ -18,12 +18,6 @@ const UserSchema = new mongoose.Schema({
     gender: Array,
     hobbies: Array,
     profileImgName: String,
-    // posts: [
-    //     {
-    //         type: mongoose.Schema.Types.ObjectId,
-    //         ref: 'PostModel',
-    //     },
-    // ],
 });
 
 const model = mongoose.model('UserModel', UserSchema);

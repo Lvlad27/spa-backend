@@ -6,7 +6,7 @@ dotenv.config();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const UserRouter = require('./routes/UserRouter.js');
-const UserRouter = require('./routes/PostRouter.js');
+const PostRouter = require('./routes/PostRouter.js');
 
 const port = process.env.PORT || 3000;
 
@@ -27,4 +27,4 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/dataService', UserRouter);
-app.use('/posts', PostRouter);
+// app.use('/posts', PostRouter);
