@@ -26,5 +26,5 @@ app.use(cors('http://127.0.0.1:8080'));
 app.use(bodyParser.json());
 
 // Routes
-app.use('/dataService', UserRouter);
-// app.use('/posts', PostRouter);
+app.use('/dataservice', UserRouter);
+app.use('/dataservice/posts', PostRouter);

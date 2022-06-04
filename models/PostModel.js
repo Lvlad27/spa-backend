@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const PostSchema = new mongoose.Schema(
     {
-        user: {
+        postedBy: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'UserModel',
         },
