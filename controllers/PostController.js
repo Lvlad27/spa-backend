@@ -12,7 +12,7 @@ let controls = {
     },
     readAll: async (req, res) => {
         try {
-            let allPosts = await Post.find();
+            let allPosts = await Post.find().populate({ path: 'postedBy', model: 'UserModel' });
             res.json(allPosts);
         } catch (err) {
             res.json({ errors: err });
