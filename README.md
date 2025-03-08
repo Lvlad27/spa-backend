@@ -1,10 +1,10 @@
 # Design Document: Social Media App Backend
 
-This document describes the current implementation of the backend for a social media application. It complements a frontend built with Vanilla JavaScript, focusing on providing a RESTful API for data management.
+This document describes the current implementation of the backend for a social media application. It complements a [frontend built with Vanilla JavaScript](https://github.com/Lvlad27/spa-frontend), focusing on providing a RESTful API for data management.
 
 ## 1. Introduction
 
-This backend serves as a data provider for a single-page application (SPA) frontend. The frontend, developed with HTML, CSS, and Vanilla JavaScript, utilizes this backend to persist data related to users and posts. This document outlines the technologies, architecture, and current functionalities of this specific backend implementation.
+This backend serves as a data provider for a [single-page application (SPA) frontend](https://github.com/Lvlad27/spa-frontend). The frontend, developed with HTML, CSS, and Vanilla JavaScript, utilizes this backend to persist data related to users and posts. This document outlines the technologies, architecture, and current functionalities of this specific backend implementation.
 
 ## 2. Purpose
 
